@@ -1,0 +1,43 @@
+<script>
+/*일반적인 언어에서는 배열 선언시 반드시 크기를 명시해야하지만
+자바스크립트는 배열의 크기를 명시하지 않아도 되며, 이 경우
+자동으로 늘어난다.*/
+
+/*
+문제 9
+다음 그림에 해당하는 배열을 생성하고, 각 공간에는 아래와 같은 7개의 낱말을 채워 넣은 후 다음
+물음에 답하세요.
+(1) 배열의 크기를 출력하세요.
+document.write(word.length); //length 배열의 길이를 담는 변수
+(2) 배열에 들어있는 모든 문자를 출력하세요.
+document.write(word2);
+*/
+var word = new Array(7);//크기명시(단 초기의 크기)
+
+word[0]="마우스";
+word[1]="마우스";
+word[2]="마우스";
+word[3]="마우스";
+word[4]="마우스";
+word[5]="마우스";
+word[6]="마우스";
+document.write("배열의 길이:",word.length); //length 배열의 길이를 담는 변수
+document.write("<br>");
+
+var word2 = new Array();//크기명시하지 않음
+word2[0]="강아지";
+word2[1]="고양이";
+word2[2]="호랑이";
+word2[3]="사자";
+word2[4]="곰";
+word2[5]="쿼카";
+word2[6]="당나귀";
+
+document.write("word2의 모든 문자:",word2);
+
+
+
+
+
+
+</script>

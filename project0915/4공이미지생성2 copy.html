@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>공생성</title>
+<style>
+    
+</style>
+
+<script>
+    var cnt=0;
+    function createBall(){
+        cnt++;
+        var ball = document.createElement("img");
+        ball.style.width=50+"px";
+        var path = document.getElementById("path").value;
+        var txt = document.getElementById("txt").value;
+        txt = parseInt(txt);
+        
+        // //삼항 연산자로
+        // ball.src=(cnt%txt==0)?path:"../images/ball/ball2.png";
+
+        if(cnt%txt==0){
+            ball.src=path;
+        }else{
+            ball.src="../images/ball/ball2.png";
+        }
+
+        document.body.appendChild(ball);//body에 부착
+
+    }
+</script>
+</head>
+<body>
+    <input id="txt" type="text" placeholder="몇번째마다 공을 생성할까요?"/>
+    <input id="path" type="text" placeholder="이미지를 적어주세요"/>
+
+    <button onclick="createBall()">수동 공생성</button>
+    <button>자동 공생성</button>
+</body>
+</html>

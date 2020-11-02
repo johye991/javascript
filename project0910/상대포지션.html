@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>상대포지션</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+        }
+        #box1{
+            background:red;
+        }
+        
+        #box2{/*box2는 box1의 영향을 받아 밀려난 위치가 relative임, top : 50px을 주게 된다면
+                box1의 기준으로 밀려난 위치 0,0에서 y축으로 50px주게 되는 것이다.*/
+            background:blue; 
+            position :relative;/*body를 기준으로 relative*/
+            top : 50px; /*(relative위치에서) 현재 자기 자신의 본연의 위치에서 y축으로 50*/
+        }
+
+
+    </style>
+
+
+
+    <script>
+
+
+
+    </script>
+</head>
+<body>
+
+    <!-- html모든 요소는 별도로 포지션을 지정하지 않으면
+    default 포지션은 relative이다
+    relative : 다른 요소에 영향을 받아 지정된 최초의위치
+                상대적 위치, 지정된 위치가 0임-->
+    <div id = "box1"></div>
+    <div id = "box2"></div>
+</body>
+</html>

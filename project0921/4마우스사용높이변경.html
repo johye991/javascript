@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마우스 사용높이 변경</title>
+
+<script>
+    var targetH =35;//메뉴가 도달할 높이
+    let a = 0.1;
+    var box;
+
+    
+    function createMenu(){
+        box = document.createElement("div");//<div></div>
+        box.style.width= 200+"px";//box이미지 너비
+        box.style.height= 35+"px";//box이미지 높이
+        box.style.background="green";
+        box.style.position="relative";
+        box.style.top=0+"px";//box의 위치 top 0px
+        box.style.borderRadius="15px";//모서리 둥굴게 
+        
+        document.body.appendChild(box);//body에 box부착
+        
+        //마우스를 올려 놓으면 , 높이가 500px에 도달하게
+        box.addEventListener("mouseover", function(){
+            targetH=500//height를 기준으로 높이를 500만큼 늘린다.
+        });
+        
+        //마우스를 내려놓으면, 다시 35px로 돌아오게
+        box.addEventListener("mouseout", function(){
+            targetH=35;//box의 높이(height)가 35이므로
+        });
+    }
+    
+    //감속도 적용하여 높이를 조절하자
+    function move(){
+        //메뉴의 높이 = 현재높이 + 비율계수*(목표지점 - 현재 높이);
+        box.style.height=parseFloat(box.style.height)+a*(targetH-parseFloat(box.style.height)) + "px";
+    }
+    
+    function init(){
+        //메뉴를 표현한 사각형 생성하기
+        createMenu();
+    }
+    window.addEventListener("load", function(){
+        init();
+        setInterval("move()", 25);
+    });
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

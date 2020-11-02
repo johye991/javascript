@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 500px;
+            height: 500px;
+            background: turquoise;
+            margin: auto;
+            position: relative;
+
+        }
+    
+    </style>
+    <script>
+
+        //문서가 로드되면, 초기화할 작업을 아래의 init함수에서
+        //처리해보자
+
+        var box;//문서내의 div박스를 담아놓을 전역변수
+
+        var x = 0;//박스의 위치 x좌표를 결정하는 전역변수
+        var y = 200;//y좌표 결정
+                    //y값이 100인 이유는 개발자가 처음에 둔 위치가
+                        //100이라서
+
+        
+        var step = 5;               
+        
+        
+        function init(){
+            box = document.getElementById("box");//전역변수에 보관
+            //박스의 스타일을 css에서가 아니라 js프로그래밍으로 처리한다
+            //효과적으로는 달라지는게 없지만 css를 프로그램으로
+            //처리할 수 있다
+            box.style.width=50+"px";
+            box.style.height=50+"px";
+            box.style.background="pink";
+            box.style.position="absolute";
+            box.style.left=x+"px";
+            box.style.top=y+"px";
+        }
+
+        //수동으로 box의 left와 top을 변경시켜보자
+        function move(){
+            x += step;
+            y += step;
+            box.style.left=x+"px";
+            box.style.top=y+"px";
+
+            // y가500 x+,y-
+            // x 500 x-,y-
+            // y가 0 x-,y+,
+            // x가 0 x+, y-
+            
+            if(x==250 && y==500){
+                x+=step;
+                y-=step;
+            }else if(x==500 && y ==250){
+                x-=step;
+                y+=step;
+            }else if(x==250 && y == 0){
+                x-=step;
+                y-=step;
+            }else{
+                x+=step;
+                y-=step;
+            }
+        
+
+        }
+
+    </script>
+</head>
+<body onload="init()">
+    <div id = "wrapper">
+        <button onclick="move()">수동</button>
+        <button>자동</button>
+        <div id = "box"></div>
+    </div>
+</body>
+</html>

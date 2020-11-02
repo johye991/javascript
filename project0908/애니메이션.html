@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script>
+
+        var n = 1; //변수명을 정의할 때 영문, 특수문자 안됨(예외:$,_)
+        //문서 내의pic이라 불리는 요소의 src속성을 교체
+        //숫자 시작안됨
+        function next(){
+            n=n+1;
+            document.getElementById("pic").src="../images/hero/image"+n+".png";
+        }
+    </script>
+</head>
+<body>
+    <img src = "../images/hero/image1.png" id = "pic" />
+    <button onclick="next()">다음 프레임</button>
+    
+</body>
+</html>

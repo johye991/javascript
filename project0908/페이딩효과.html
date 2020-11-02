@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*자바 스크립트를 이용하면, 실행타임에도 
+        CSS를 변경할 수 있다
+        */
+        var op=1 ;// 변수 선언시 의미 부여
+        function transparent(){
+        //문서내의 pic이라는 요소의 css중 투명도를 투명하게 하자
+        op = op -0.1;
+        document.getElementById("pic").style.opacity=op;//style시트의 opacity(투명도조절)사용
+
+        }
+        
+        //점점진하게
+        var op2 = 0;
+        function transparent2(){
+            op2 = op2 + 0.1;
+            document.getElementById("pic").style.opacity=op2;
+        }
+
+    </script>
+</head>
+<body>
+    <img src="../images/travel/6.jpg" id = "pic"/>
+    <button onclick="transparent()">점점 흐리게</button>
+    <button onclick="transparent2()">점점 진하게</button>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>배열로탭메뉴 만들기</title>
+<style>
+    .wrapper{
+        width: 600px;
+        height: 500px;
+        background:black;
+        margin: auto;
+        
+    }
+    .tab{
+        width: 100%;
+        height: 50px;
+        background-color: rgb(163, 202, 99);
+
+    }
+    /* tab 아래 a태그 */
+    .tab a{
+        padding: 0px;
+        
+        text-decoration: none;
+        display: inline-block;
+        width: 200px;
+        height: 50px;
+        text-align: center;/*글자 가운데 정렬*/
+        font-size: 25px;
+        color: white;
+    }
+    #box1, #box2, #box3{
+    width: 100%;
+    height: 450px;
+}
+    #box1{
+        background-color: rgb(238, 161, 219);
+    }
+    #box2{
+        background-color: cornflowerblue;
+        display:none;
+    }
+    #box3{
+        background-color: cyan;
+        display: none;
+    }
+
+</style>
+<script>
+    var boxArray
+ 
+    function init(){
+        boxArray = document.getElementsByName("box");//크기가 3인 배열 반환[div][div][div]
+    }
+
+    
+    //n에는 지금 유저가 선택한 탭의 정보가 넘어온다
+    function showHide(n){
+        for(var i = 0; i<boxArray.length; i++){
+            if(n==i){
+                boxArray[i].style.display="block";//지금 선택한 탭이 맞다면 보인다
+            }else{
+                boxArray[i].style.display = "none";//지금선택한 탭이 아니라면 안보이고
+            }
+
+        }
+    }
+    window.addEventListener("load", function(){
+        init();
+    })
+
+</script>
+</head>
+<body>
+<div class = "wrapper">
+    <div class="tab">
+        <a href="javascript:showHide(0)" style="background-color:rgb(238, 161, 219);">공지사항</a><a href="javascript:showHide(1)"style="background-color:cornflowerblue;">질문게시판</a><a href="javascript:showHide(2)" style="background-color: cyan;">자유게시판</a>
+    </div>
+    <div class="content">
+        <div id = "box1" name ="box"></div>
+        <div id = "box2" name ="box"></div>
+        <div id = "box3" name ="box"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>벽에 튀기는 공</title>
+<style>
+    #wrapper{
+        width: 500px;
+        height: 500px;
+        background-color: paleturquoise;
+        margin: auto;
+        position: relative;
+    }
+
+</style>
+
+<script>
+    var ball;
+    var wrapper;
+    var x=0;
+    var y=0;
+    var stepX=5;
+    var stepY=8;
+    var flag= true;
+
+    function move(){
+        if(flag){
+            x=x+stepX;//X가 증가 감소 여부 결정
+            y=y+stepY;//Y가 증가 감소 여부 결정
+
+            //공의 좌표를 변경
+            ball.style.left=x+"px";
+            ball.style.top=y+"px";
+            
+            //왼쪽이나 오른쪽 벽에 닿으면
+            if (x>=(parseInt(wrapper.style.width)-parseInt(ball.style.width))||x<=0 ){
+                //오른쪽 벽에 닿은 공은 wrapper의 가로길이 즉 x축 길이가 공의 x좌표길이 만큼 빼야 공의 그림이 벽에 닿은 모양이 나옴
+                //왼쪽 벽에 닿은 공은 x값이 0이 되면 닿는 모양이 나오ㅁ
+                //x축으로 감소하면서 이동
+                
+                stepX= -stepX;//부호반대로 전환 벽에 튕기는 효과
+            }
+            //공이 바닥이나 천장에 닿으면
+            if(y>=(parseInt(wrapper.style.height)-parseInt(ball.style.height))||y<=0 ){
+                stepY= -stepY;
+            }
+        }
+    }
+
+
+    function init(){    
+        wrapper=document.getElementById("wrapper");
+        ball= document.createElement("img");
+        ball.src="../images/ball/ball2.png";
+        ball.style.position="absolute";
+        ball.style.width=50+"px";
+        ball.style.height=50+"px";
+        ball.style.top=20+"px";
+        ball.style.left=20+"px";
+        wrapper.appendChild(ball);
+    }
+
+    window.addEventListener("load",function(){
+        init();
+        move();
+    });
+    
+
+</script>
+
+</head>
+<body>
+    <div id="wrapper"></div>
+    <button onclick="move()">수동움직임</button>
+    <button onclick="auto()">자동움직임</button>
+    <button onclick="pause()">잠시멈춤</button>
+</body>
+</html>

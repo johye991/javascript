@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+    #wrapper{
+        width:800px;
+        height:600px;
+        background:red;
+        margin:auto; /*화면의 중앙에 오도록 양쪽에 마진을 둔다*/
+        position: relative; /*상대 포지션*/
+    }
+    /*wrapper 자식인 code, content 를 부모를 기준으로 배치할 것임 
+        부모가 wrapper이므로 code와 content는 absolute로 지정해서
+        부모 div안에 오도록 설정한다.*/
+    
+    #code{/*스위치이미지가 놓여질 크기 설정*/
+        
+        /*width와 height의 크기는 wrapper를 기준으로 설정한다
+            position : absolute때문에 */
+        width:100px;
+        height:100%;
+        position: absolute;
+        left:0px;
+        top:0px;
+        background:#dfdfdf;
+    }
+    #content{/*방 이미지가 놓여질 div content이다*/
+        width:700px;
+        height:100%;
+        position: absolute;
+        left:100px;/*wrapper를 기준으로 스위치 div 옆에 
+        존재야 하므로 x축을  100px 떨어뜨려준다*/
+        top:0px;
+       
+    }
+    #mask{
+        /*방 이미지를 가릴 mask div이므로 width와 height의 크기르
+            content와 같이지정 한다.*/
+        width:700px;
+        height:600px;
+        background:black;
+        opacity: 0.8;/*불이 꺼졌을 때 투명도를 0.8로 지정*/
+    }
+
+    img, #mask{/*img와 id가 mask인 태그를  content안에 
+                    공존 시키기 위해 */
+        position:absolute;
+        left:0px;
+        top:0px;
+    }
+
+</style>  
+<script>
+var status; //on or off 를 결정할 변수     
+var flagSwitch=true; //스위치의 상태를 결정짓는 변수 true / false
+var op=1; // 1(불투명) or 0(투명) 으로 투명도를 결정지을 변수
+function turn(){
+    //문서내의 pic 요소의 src속성을 변경하자!!
+    status = (flagSwitch)? "on":"off"; 
+    document.getElementById("pic").src="../images/light/switch_"+status+".png";
+
+    //문서내에  mask 라는 id 요소의 투명도도 제어하자 
+    op = (flagSwitch)? 0:0.8;
+    document.getElementById("mask").style.opacity=op; //0켜고, 1끄기
+
+    flagSwitch=!flagSwitch; //논리값 뒤집기!!
+}    
+</script>  
+</head>
+<body>
+
+    <!-- 스위치 이미지와 방 이미지를 같이 저장될 wrapper div -->
+    <div id="wrapper">
+
+        <!-- 스위치 이미지가 저장될 div -->
+        <div id="code">
+
+            <!-- 스위치꺼진 이미지 div -->
+            <img id="pic" src="../images/light/switch_off.png" onClick="turn()"/>
+        </div>
+
+        <!-- 방 이미지 div  -->
+        <div id="content">
+            <img src="../images/light/room.jpg" width="700px" height="600px">     
+            <!-- 방의 불꺼짐과 켜짐을 표현하기 위한 mask div -->
+            <div id="mask"></div>
+        </div>
+    </div>
+</body>
+</html>

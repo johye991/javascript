@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: cornflowerblue;
+            position: absolute;
+            left: 0px;
+            top: 150px;
+            color: cornsilk;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+
+        }
+    </style>
+        
+    <script>
+        function auto(){
+            setInterval("move()", 100);
+        }
+
+        var x = 0;//box의 x좌표
+        var step = 5;// 우측인지 좌측인지 결정짓는 변수
+        var flag = true;
+
+        //함수는 호출해야 동작한다( 호출하기 전까지는 절대로 실행하지 않는다)
+        function move(){
+            x += step;//우측방향일때는 양수 5, 좌측방향일때는 음수 5
+            document.getElementById("box").style.left=x+"px";
+
+            //박스안에 값 출력
+            document.getElementById("box").innerText=x;
+
+            //400이상이거나 0이하면 기존의 5는 부호를 바꿔야됨
+            flag = (x<=0 || x>=400) ? !flag : flag;
+            step = (flag) ? 5 : -5
+        }
+
+    </script>
+</head>
+<body>
+    <button onclick="move()">수동 움직이기</button>
+    <button onclick="auto()">자동 움직이기</button>
+    <div id = "box"></div>
+</body>
+</html>

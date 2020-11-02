@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공튕기기</title>
+
+<script>
+    /*이 예제에서는 body에 직접 태그를 작성하지 말자
+    순수 자바스크립트로만, 디자인까지 작성해보자*/
+    
+    var ball; //전역변수로 선언해야, 다른 함수영역에서 접근이 가능하다
+    var x=0; //ball에 x좌표를 결정짓는 전역변수, 누적이 되어야 하므로 
+    var y=0;
+    var stepX=5;//초기의 x값 증가량
+    var stepY=4;//초기의 y값 증가량
+
+    var wrapper;//다른 함수에서 접근하기 위해서 전역변수로 선언
+    var flag = true; //move함수의 코드가 수행할지 말지를 결정짓는 전역변수
+                    //전역변수는 브라우저가 살아있는 동안 계속 사용가능
+
+    function init(){//초기화 함수
+        //alert("문서를 다 읽었어요");
+
+        //버튼 함수 호출
+        createButton();    
+
+        wrapper = document.createElement("div"); //<div></div>와 동일
+        wrapper.style.width=400+"px";
+        wrapper.style.height=400+"px";
+        wrapper.style.background="yellow";
+        wrapper.style.margin="auto";
+        wrapper.style.position="relative";//부모 포지션
+        document.body.appendChild(wrapper);//<body>ㅌ태그안에 추가
+
+        //공 추가하기
+        ball = document.createElement("img");//<img/>와 동일
+        ball.src="../images/ball/ball2.png";//<img src = ""/>와 동일
+        ball.style.width=50+"px";
+        ball.style.height=50+"px";
+        ball.style.position="absolute"; //부모인 wrapper를 기준으로
+        ball.style.left=x+"px";//공의 처음위치 x값
+        ball.style.top=y+"px";//공의 처음위치 y값
+        wrapper.appendChild(ball);//wrapper에 추가
+
+    }
+
+    //버튼 생성 함수
+    function createButton(){
+        //동적으로 버튼을 생성하고, click이벤트 마저도 프로그래밍적으로
+        //처리해보자
+        var bt1 =  document.createElement("button");//수동
+        var bt2 =  document.createElement("button");//자동
+        var bt3 =  document.createElement("button");//잠시 멈추는 버튼
+        bt1.innerText = "수동" //<button>수동</button>
+        bt2.innerText = "자동" //<button>자동</button>
+        bt3.innerText = "Pause" //<button>Pause</button>
+        document.body.appendChild(bt1);//body에 추가
+        document.body.appendChild(bt2);//body에 추가
+        document.body.appendChild(bt3);//body에 추가
+        
+        //버튼에  click 이벤트 추가하기
+        bt1.addEventListener("click",function(){//수동버튼
+            //이름 없는 함수를 익명함수라 하고, 이 영역에 코드르작성하면
+            //해당 이벤트가 발생했을 때 이 코드가 동작하게 된다
+            //alert("나 눌렀냐")
+            //수동 움직임
+            move();
+        });//버튼에 이벤트 감지기 등록
+        bt2.addEventListener("click",function(){//자동버튼
+            setInterval("move()", 30)//30/1000초
+
+            //현재 버튼을 더이상 못누르도록 비활성화 시킨다
+            bt2.disabled=true;//버튼의 비활성화 여부를 true
+        });
+        bt3.addEventListener("click",function(){//잠깐 멈추는 버튼
+            //한번누르면 동작, 또한번 누르면 멈춤
+            //결국 멈추거나 움직이거나(단 두가지)
+            //흑백논리의 처리는 프로그래밍 언어네서 지원하는 3가지 데이터 유형 중
+            //논리값과 연관성이 높다
+            flag = !flag;//true일때 진행되던 공이 false일때 멈춤 
+
+        })
+
+    }
+    
+    //공의 좌표를 증감시켜 움직이는 효과를 내본다
+    function move(){
+            if(flag){
+            //증감처리
+            x=x+stepX;//X가 증가 감소 여부 결정
+            y=y+stepY;//Y가 증가 감소 여부 결정
+
+            //공의 좌표를 변경
+            ball.style.left=x+"px";
+            ball.style.top=y+"px";
+            
+            //왼쪽이나 오른쪽 벽에 닿으면
+            if (x>=(parseInt(wrapper.style.width)-parseInt(ball.style.width))||x<=0 ){
+                //오른쪽 벽에 닿은 공은 wrapper의 가로길이 즉 x축 길이가 공의 x좌표길이 만큼 빼야 공의 그림이 벽에 닿은 모양이 나옴
+                //왼쪽 벽에 닿은 공은 x값이 0이 되면 닿는 모양이 나오ㅁ
+                //x축으로 감소하면서 이동
+                
+                stepX= -stepX;//부호반대로 전환 벽에 튕기는 효과
+            }
+            //공이 바닥이나 천장에 닿으면
+            if(y>=(parseInt(wrapper.style.height)-parseInt(ball.style.height))||y<=0 ){
+                stepY= -stepY;
+            }
+            
+
+            // //삼항연산자로 하기
+            // stepX = (x>=(parseInt(wrapper.style.width)-parseInt(ball.style.width))||x<=0 ) ? -stepX:stepX;
+            // stepY = (y>=(parseInt(wrapper.style.height)-parseInt(ball.style.height))||y<=0) ? -stepY:stepY;
+            }
+    }
+    
+
+
+
+</script>
+
+
+</head>
+<body onload = "init()">
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<script>
+//변수를 지역화된 영역내에서 선언하면, 그 변수는 지역변수라 하고
+// 오직 지역화된 영역내에서만, 참조가능한 생명력을 갖는다
+//따라서 지역화된 영역{}의 괄호()를 만나면 
+//지역 변수는 소멸됨
+
+    //var x = 9; //지역화 시키지 않은 변수는 전역변수라 하고
+                // 이 변수는 프로그램이 가동될때, 즉 브라우저로 실행 될때 
+                //메모리에 생성되며, 브라우저를 닫을때 메모리에서 소멸됨
+    //function test(){
+    //    var k = 8;
+    //}
+   // test();
+
+   //------------------------------------------------------
+        //중괄호를 하지 않으면 바로 아래 문장까지만 영향을 줌
+    if(false)  document.write("A"); //if문이 여기까지 영향을 준다
+   document.write("B");
+
+
+   //-------------------------------------------------------
+    
+</script>
+
+</head>
+<body>
+    
+</body>
+</html>
